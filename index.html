@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="sample">
+      <h2>Cake builder</h2>
+      {{hello}}
+      <hr>
+      <button class="btn btn-primary" @click="addLayer">Add layer</button>
+      <hr>
+      <div class="row">
+        <div class="col col-sm-6">
+          <div class="cake">
+            <div
+              class="layer"
+              :class="'layer-' + layer.type"
+              :style="{height: layer.height * 6 + 'px'}"
+              v-for="(layer, i) in layers"
+              @click="changeHeight(i, 1)"
+              @contextmenu.prevent="changeHeight(i, -1)"
+              >
+                
+            </div>
+          </div>
+        </div>
+        <div class="col col-sm-6">
+          <table class="table table-bordered"  v-show="hasLayers">
+            <tr>
+              <th>Type</th>
+              <th>Height</th>
+              <th>Actions</th>
+            </tr>
+            <tr v-for="(layer, index) in layers">
+              <td>
+                <select class="form-control" v-model="layers[index].type">
+                  <option
+                    :value="key"
+                    v-for="(lt, key) in layerTypes"
+                    v-model="layers[index].type"
+                    >
+                    {{lt.label}}
+                  </option>
+                </select>
+              </td>
+              <td>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model.number="layer.height"
+                >
+              </td>
+              <td>
+                <button
+                  class="btn btn-danger"
+                  @click="deleteLayer(index)"
+                >
+                  Delete Layer
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="alert alert-success price w-50 text-center" v-show="hasLayers">
+        <span class="price">
+          {{price}} EUR
+        </span>
+        <button class="btn btn-warning">
+          Order now!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/vue.js"></script>
+  <script src="js/simple.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+.wrapper{
+  padding: 15px;
+  max-width: 500;
+  margin: 0 auto;
+}
+
+.layer{
+  transition: height .5s;
+  margin-bottom: 2px;
+}
+
+.layer-bisquit{
+  background: brown;
+}
+
+.layer-beze{
+  background: pink;
+
+}
+
+.layer-curd{
+  background: lightgrey;
+}
+
+.price{
+  font-size: 26px;
+  /* margin-right: 40px; */
+}
